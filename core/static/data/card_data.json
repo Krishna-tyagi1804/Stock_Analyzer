@@ -1,0 +1,26 @@
+[
+    {
+        "symbol": "GOOGL",
+        "shortName": "Alphabet Inc.",
+        "currentPrice": 302.46,
+        "previousClose": 296.72,
+        "change_percent": 1.9344836883256782,
+        "marketCap": 3663432253440,
+        "trailingPE": 29.857847,
+        "fiftyTwoWeekHigh": 328.83,
+        "fiftyTwoWeekLow": 140.53,
+        "sector": "Communication Services"
+    },
+    {
+        "symbol": "TATASTEEL.NS",
+        "shortName": "TATA STEEL LIMITED",
+        "currentPrice": 168.28,
+        "previousClose": 168.12,
+        "change_percent": 0.09517011658339078,
+        "marketCap": 2098762612736,
+        "trailingPE": 30.877066,
+        "fiftyTwoWeekHigh": 186.94,
+        "fiftyTwoWeekLow": 122.62,
+        "sector": "Basic Materials"
+    }
+]

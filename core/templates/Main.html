@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Analyzer 101</title>
+    <link rel="stylesheet" href="static/styles/style_main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Stock Analyzer 101</div>
+        <div class="search-box">
+            <input type="text" placeholder="Search ticker (e.g. INFY)...">
+            <button>Search</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <header class="page-header">
+            <h2>Market Overview</h2>
+            <p>Real-time data for your portfolio</p>
+        </header>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="stat-card">
+            <span class="label">Current Price</span>
+            <span class="value">${{ info.currentPrice }}</span>
+        </div>
+
+        <div class="stat-card">
+            <span class="label">Day Change</span>
+            <span class="value" style="color: {{ 'green' if info.change_percent > 0 else 'red' }}">
+                {{ info.change_percent | round(2) }}%
+            </span>
+        </div>
+
+        <div class="stat-card">
+            <span class="label">Previous Close</span>
+            <span class="value">${{ info.previousClose }}</span>
+        </div>
+
+        <div class="stat-card">
+            <span class="label">Market Cap</span>
+            <span class="value">${{ "{:,.0f}".format(info.marketCap) }}</span>
+        </div>
+
+        <div class="stat-card">
+            <span class="label">Trailing P/E</span>
+            <span class="value">{{ info.trailingPE | round(2) }}</span>
+        </div>
+
+        <div class="stat-card">
+            <span class="label">52 Week High</span>
+            <span class="value">${{ info.fiftyTwoWeekHigh }}</span>
+        </div>
+
+        <div class="stat-card">
+            <span class="label">52 Week Low</span>
+            <span class="value">${{ info.fiftyTwoWeekLow }}</span>
+        </div>
+
+    </div>
+
+            <div class="graph-container">
+                <h3>Price History</h3>
+                <div class="iframe-wrapper">
+                    <iframe src="static/data/graph.html" title="Stock Graph" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
