@@ -1,0 +1,1 @@
+Use app to host a local server, currently only tata and google stocks are in working
