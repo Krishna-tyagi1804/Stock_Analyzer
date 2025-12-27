@@ -12,25 +12,21 @@
 
     <nav class="navbar">
         <div class="logo">Stock Analyzer 101</div>
-        <div class="search-box">
-            <input type="text" placeholder="Search ticker (e.g. INFY)...">
-            <button>Search</button>
-        </div>
     </nav>
 
     <div class="container">
         
         <header class="page-header">
-            <h2>Market Overview</h2>
-            <p>Real-time data for your portfolio</p>
+
+            <h2>{{ info["shortName"] or Company }}</h2>
         </header>
         
         <div class="dashboard-grid">
             <div class="card">
-            
+            <p>Real-time data for {{ info["shortName"] or Company }}</p>
             <div class="stat-card">
                 <span class="label">Current Price</span>
-                <span class="value">₹{{ info["currentPrice"] or '—' }}</span>
+                <span class="value">{{ info["currentPrice"] or '—' }}</span>
             </div>
             <div class="stat-card">
                 <span class="label">Day Change</span>
@@ -41,12 +37,12 @@
 
             <div class="stat-card">
                 <span class="label">Previous Close</span>
-                <span class="value">${{ info["previousClose"] or '—' }}</span>
+                <span class="value">{{ info["previousClose"] or '—' }}</span>
             </div>
 
             <div class="stat-card">
                 <span class="label">Market Cap</span>
-                <span class="value">${{ "{:,.0f}".format(info["marketCap"]) or "-"}}</span>
+                <span class="value">{{ "{:,.0f}".format(info["marketCap"]) or "-"}}</span>
             </div>
 
             <div class="stat-card">
@@ -56,14 +52,13 @@
 
             <div class="stat-card">
                 <span class="label">52 Week High</span>
-                <span class="value">${{ info["fiftyTwoWeekHigh"] or '—' }}</span>
+                <span class="value">{{ info["fiftyTwoWeekHigh"] or '—' }}</span>
             </div>
 
             <div class="stat-card">
                 <span class="label">52 Week Low</span>
-                <span class="value">${{ info["fiftyTwoWeekLow"] or '—' }}</span>
+                <span class="value">{{ info["fiftyTwoWeekLow"] or '—' }}</span>
             </div>
-            <!-- ...existing code... -->
                 </div>
 
             <div class="graph-container">

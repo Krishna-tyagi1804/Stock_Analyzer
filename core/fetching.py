@@ -17,29 +17,44 @@ current = now.strftime("20%y-%m-%d")
 data1 = yf.download(tickers, start="2025-01-01", end=current, group_by="ticker")
 data1.columns = [f"{col[0]}_{col[1]}" for col in data1.columns]
 data1.to_sql("Chart_data", conn, if_exists="replace", index = True)
+CURRENCY_SYMBOLS = {
+    'USD': '$', 'EUR': '€', 'JPY': '¥', 'GBP': '£', 'CNY': '¥',
+    'INR': '₹', 'CAD': 'C$', 'AUD': 'A$', 'KRW': '₩', 'BRL': 'R$',
+    'RUB': '₽', 'MXN': 'Mex$', 'SGD': 'S$', 'HKD': 'HK$'
+}
 
 card_data = []
 for ticker in tickers:
     ticker_obj = yf.Ticker(ticker) 
-    info = ticker_obj.info
+    info1 = ticker_obj.info
+    currency = info1.get('currency')
+    cur_symbol = CURRENCY_SYMBOLS.get(currency)
+    cur_price = info1.get("currentPrice")
+    prev_close = info1.get("previousClose")
     cur_data = {
         # 1. Header Data
-        "symbol": info.get("symbol"),
-        "shortName": info.get("shortName"),
-        "currentPrice": info.get("currentPrice"),
+        "symbol": info1.get("symbol"),
+        "shortName": info1.get("shortName"),
+        "currentPrice": f"{cur_symbol}{cur_price}",
         
         # Calculate Change (Current - Previous Close)
-        "previousClose": info.get("previousClose"),
+        "previousClose": info1.get("previousClose"),
         # Use .get() with defaults to avoid errors if data is missing
-        "change_percent": (info.get("currentPrice", 0) - info.get("previousClose", 1)) / info.get("previousClose", 1) * 100,
+        "change_percent": (info1.get("currentPrice", 0) - info1.get("previousClose", 1)) / info1.get("previousClose", 1) * 100,
 
         # 2. Body Data
-        "marketCap": info.get("marketCap"),  # You will need to format this (e.g., 20000000 -> 20M)
-        "trailingPE": info.get("trailingPE"), # Price-to-Earnings Ratio
-        "fiftyTwoWeekHigh": info.get("fiftyTwoWeekHigh"),
-        "fiftyTwoWeekLow": info.get("fiftyTwoWeekLow"),
-        "sector": info.get("sector")
+        "marketCap": info1.get("marketCap"),  # You will need to format this (e.g., 20000000 -> 20M)
+        "trailingPE": info1.get("trailingPE"), # Price-to-Earnings Ratio
+        "fiftyTwoWeekHigh": info1.get("fiftyTwoWeekHigh"),
+        "fiftyTwoWeekLow": info1.get("fiftyTwoWeekLow"),
+        "sector": info1.get("sector")
     }
+    if currency != "INR":
+        ticker_symbol = f"{currency}INR=X"
+        data = yf.Ticker(ticker_symbol)
+        price = data.info.get('currentPrice') or data.info.get('regularMarketPreviousClose')
+        price = price * info1.get("currentPrice")
+        cur_data["currentPrice"] = f"{cur_symbol}{cur_price}(₹{price:.2f})"
     card_data.append(cur_data)
 
 df = pd.DataFrame(card_data)
