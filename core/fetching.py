@@ -10,7 +10,7 @@ conn = sqlite3.connect(db_path)
 BASE_DIR = Path(__file__).resolve().parent
 db_path = BASE_DIR / "static" / "data" / "card_data.db"
 con = sqlite3.connect(db_path)
-tickers = ["GOOGL", "TATASTEEL.NS", "AAPL", "RELIANCE.NS"]
+tickers = ["GOOGL", "TATASTEEL.NS", "AAPL", "RELIANCE.NS", "^NSEI", "^BSESN", "GOLDBEES.NS"]
 
 now = dt.now()
 current = now.strftime("20%y-%m-%d")
@@ -29,8 +29,11 @@ for ticker in tickers:
     info1 = ticker_obj.info
     currency = info1.get('currency')
     cur_symbol = CURRENCY_SYMBOLS.get(currency)
-    cur_price = info1.get("currentPrice")
-    prev_close = info1.get("previousClose")
+    cur_price = info1.get('currentPrice') or info1.get('regularMarketPrice')
+    prev_close = info1.get('previousClose') or info1.get('regularMarketPreviousClose')
+    if info1.get("symbol") == "GOLDBEES.NS":
+        cur_price = 1000*cur_price
+        prev_close = 1000*prev_close
     cur_data = {
         # 1. Header Data
         "symbol": info1.get("symbol"),

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | StockVision</title>
+
+    <link rel="stylesheet" href="/static/styles/selection.css">
+</head>
+<body>
+    <video autoplay muted loop playsinline class="bg-video">
+        <source src="/static/vid/bg.mp4" type="video/mp4">
+    </video>
+        
+    <nav class="navbar">
+        <div class="brand">
+            <img src="/static/images/web_images/stockvision.png">
+            <span>StockVision</span>
+        </div>
+            <form action="/">
+             <button type="submit" class="btn-primary">Home</button>
+            </form>
+    </nav>
+    <div class="card">
+        <h1>Stock Analyzer</h1>
+        <p class="subtitle">Choose a company to analyze</p>
+
+        <form id="stockForm" method="POST" action="/Main">
+            <div class="stock-grid">
+                
+                <input type="radio" name="stock" id="tata" value="TATASTEEL.NS">
+                <label for="tata">
+                    <img src="/static/images/stock_images/tata.png" alt="Tata Logo">
+                    <span>Tata Steel</span>
+                </label>
+
+                <input type="radio" name="stock" id="google" value="GOOGL">
+                <label for="google">
+                    <img src="/static/images/stock_images/google.png" alt="Google Logo">
+                    <span>Google</span>
+                </label>
+
+                <input type="radio" name="stock" id="reliance" value="RELIANCE.NS">
+                <label for="reliance">
+                    <img src="/static/images/stock_images/rel.png" alt="Reliance Logo">
+                    <span>Reliance</span>
+                </label>
+
+                <input type="radio" name="stock" id="apple" value="AAPL">
+                <label for="apple">
+                    <img src="/static/images/stock_images/apple.png" alt="Apple Logo">
+                    <span>Apple</span>
+                </label>
+
+            </div>
+
+            <button type="submit" class="btn" id="analyzeBtn">Analyze Stock</button>
+        </form>
+    </div>
+
+</body>
+</html>

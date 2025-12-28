@@ -4,6 +4,75 @@ import pandas as pd
 import sqlite3
 from pathlib import Path
 
+def plot_graphy(name : str):
+    BASE_DIR = Path(__file__).resolve().parent
+    card_path = BASE_DIR / "static" / "data" / "chart_data.db"
+    html_path = BASE_DIR / "static" / "data" / f"{name}_graph.html"
+    con = sqlite3.connect(card_path)
+    df = pd.read_sql(f"SELECT * FROM Chart_data", con, index_col="Date")
+    df = df.dropna()
+    df = df.bfill().ffill()
+    df[f'{name}_SMA_20'] = df[f'{name}_Close'].rolling(window=20).mean()
+    df[f'{name}_SMA_50'] = df[f'{name}_Close'].rolling(window=50).mean()
+    df[f'{name}_SMA_200'] = df[f'{name}_Close'].rolling(window=200).mean()
+   
+    fig = make_subplots(specs=[[{"secondary_y": True}]])
+    fig.add_trace(
+            go.Scatter(
+                x = df.index,
+                y = df[f'{name}_Close'],
+                mode = "lines",
+                line=dict(width=1.5,color='blue'),
+                name="Price",  
+                ),
+            secondary_y=False
+    )    
+    fig.update_layout(
+    xaxis_title="Date",
+    yaxis_title="Price",
+    template="plotly_white",
+    hovermode="x unified", 
+    hoverlabel=dict(
+        bgcolor="white", 
+        font_size=12
+    ),
+    )
+    
+    fig.update_xaxes(
+    rangeselector=dict(
+        buttons=list([
+            dict(count=6, label="1w", step="day", stepmode="backward"),
+            dict(count=1, label="1m", step="month", stepmode="backward"),
+            dict(count=6, label="6m", step="month", stepmode="backward"),
+            dict(step="all")
+        ])
+    ),
+    showspikes=True, 
+    spikemode="across", 
+    spikesnap="cursor", 
+    spikethickness=1,
+    spikecolor="grey"
+    )
+    fig.update_yaxes(
+    showspikes=True, 
+    spikethickness=1,
+    spikecolor="grey"
+    )
+    fig.update_layout(
+    # 1. This removes the whitespace INSIDE the graph
+    margin=dict(l=0, r=0, t=0, b=0),
+    
+    # 2. This ensures the background matches your card
+    paper_bgcolor='rgba(0,0,0,0)', # Transparent background
+    plot_bgcolor='rgba(0,0,0,0)',
+    
+    # 3. Adjust the height if needed
+    height=300, 
+    autosize=True
+    )
+    fig.write_html(html_path, config={'displayModeBar': False})
+    
+
 def plot_graph(name : str):
     BASE_DIR = Path(__file__).resolve().parent
     card_path = BASE_DIR / "static" / "data" / "chart_data.db"
@@ -130,10 +199,12 @@ def plot_graph(name : str):
     spikethickness=1,
     spikecolor="grey"
     )
+    
     fig.update_layout(modebar_orientation="v")
     fig1.update_layout(modebar_orientation="v")
     p1 = fig.to_html(full_html=False, include_plotlyjs='cdn')
     p2 = fig1.to_html(full_html=False, include_plotlyjs='cdn')
+    
     content_html = f"""
     <!DOCTYPE html>
     <html>

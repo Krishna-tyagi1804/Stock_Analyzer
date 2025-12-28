@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    color: #fff;
+}
+
+/* BACKGROUND */
+.bg-video {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    filter: brightness(0.4);
+}
+
+/* NAVBAR (MATCH MAIN PAGE) */
+.navbar {
+    height: 70px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 50px;
+    background: rgba(140, 138, 138, 0.6);
+    backdrop-filter: blur(14px);
+    z-index: 1000;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand img {
+    height: 60px;
+}
+
+.brand span {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 16px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+}
+
+/* BUTTON */
+.btn-primary {
+    background: linear-gradient(135deg, #4f46e5, #22c55e);
+    padding: 8px 20px;
+    border-radius: 14px;
+}
+
+/* TEAM SECTION */
+.team {
+    padding: 120px 40px 40px; /* FIXED */
+    text-align: center;
+}
+
+.team h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.team-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+/* TEAM CARD */
+.team-card {
+    width: 300px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 22px;
+    backdrop-filter: blur(14px);
+}
+
+.team-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #a4a4a8;
+}
+
+.team-card span {
+    font-size: 14px;
+    color: #92a839;
+}
+
+/* ABOUT SECTION */
+.about {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(14px);
+    text-align: center;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0,0,0,0.7);
+    font-size: 14px;
+    color: #aaa;
+}

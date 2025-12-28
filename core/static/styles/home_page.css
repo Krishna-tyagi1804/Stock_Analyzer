@@ -1,0 +1,220 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
+/* BACKGROUND VIDEO */
+.bg-video {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -3;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: -2;
+}
+
+/* NAVBAR */
+.navbar {
+    height: 64px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 40px;
+    background: rgba(140, 138, 138, 0.6);
+    backdrop-filter: blur(14px);
+    z-index: 1000;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand img {
+    height: 60px;
+}
+
+.brand span {
+    font-size: 28px;
+    font-weight: 700;
+    color: #f0f1f6;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 12px;
+}
+
+/* BUTTONS (FIXED – SINGLE APPLY) */
+.btn-primary {
+    background: linear-gradient(135deg, #4f46e5, #22c55e);
+    padding: 8px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-secondary {
+    border: 2px solid #8b9cff;
+    background: transparent;
+    color: #8b9cff;
+    padding: 8px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.full {
+    width: 100%;
+}
+
+/* HERO */
+.hero {
+    height: calc(100vh - 64px);
+    margin-top: 64px;
+    padding: 80px 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.hero-text {
+    max-width: 520px;
+    color: #ebe4e4;
+}
+
+.hero-text h1 {
+    font-size: 44px;
+    margin-bottom: 16px;
+}
+
+.hero-text p {
+    color: #e5e7eb;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+/* HERO CARD */
+.hero-card {
+    background: #fff;
+    padding: 24px;
+    border-radius: 20px;
+    width: 280px;
+}
+
+.green {
+    color: #22c55e;
+    font-weight: 700;
+}
+
+.fake-chart {
+    height: 90px;
+    background: linear-gradient(180deg, #c7d2fe, #ffffff);
+    border-radius: 14px;
+    margin-top: 12px;
+}
+
+/* LOGIN */
+.login-center {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 64px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.login-card {
+    background: rgba(255,255,255,0.96);
+    padding: 28px;
+    border-radius: 18px;
+    width: 320px;
+}
+
+.login-card h2 {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.login-card input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+}
+
+/* TEXT */
+.small-text {
+    font-size: 11px;
+    color: #6b7280;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.project-line {
+    margin-top: 12px;
+    font-size: 12px;
+    color: #374151;
+    text-align: center;
+}
+
+.chart-container {
+    width: 100%;
+    height: 150px;       /* Fixed height for consistency */
+    overflow: hidden;    /* FORCE hides any spillover scrollbars */
+    border-radius: 12px;
+}
+
+/* The Iframe itself */
+.chart-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;        /* Removes the default ugly border */
+    pointer-events: none; /* Optional: Stops users from clicking/dragging the chart */
+}
+
+/* WATERMARK */
+.watermark {
+    position: fixed;
+    bottom: 10px;
+    left: 14px;
+    font-size: 12px;
+    color: #e5e7eb;
+    opacity: 0.8;
+}

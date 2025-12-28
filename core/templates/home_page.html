@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>StockVision | Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles/home_page.css">
+</head>
+<body>
+
+<!-- BACKGROUND VIDEO -->
+<video autoplay muted loop playsinline class="bg-video">
+    <source src="/static/vid/bg.mp4" type="video/mp4">
+</video>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="brand">
+        <img src="/static/images/web_images/stockvision.png" alt="StockVision Logo">
+        <span>StockVision</span>
+    </div>
+
+    <ul class="nav-links">
+        <form action="/signup">
+        <li><button type="submit" class="btn-primary">Signup</a></li>
+        </form>
+
+        <form action="\aboutus">
+        <li><button type="submit" class="btn-primary">About us</a></li>
+        </form>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-text">
+        <h1>Smart Stock Analysis<br>Made Simple</h1>
+        <p>
+            Real-time insights, AI signals & clean analytics
+            to help you make better trading decisions.
+        </p>
+
+        <div class="hero-buttons">
+            <form action="/trending" method="post">
+             <ul>
+                <button type="submit" class="btn-primary" value = "^NSEI">Trending</button>
+            </ul>
+            </form>
+        </div>
+
+        <div class="hero-buttons">
+            <form action="/selection">
+             <ul>
+                <button type="submit" class="btn-primary">Analysis now</button>
+            </ul>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- WATERMARK -->
+<div class="watermark">📷 @designwithartham</div>
+
+</body>
+</html>

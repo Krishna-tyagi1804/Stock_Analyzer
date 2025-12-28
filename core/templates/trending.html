@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trending Stocks | StockVision</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles/trending.css">
+</head>
+<body>
+
+<!-- BACKGROUND IMAGE -->
+<div class="bg-image"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="brand">
+        <img src="/static/images/web_images/stockvision.png" alt="StockVision">
+        <span>StockVision</span>
+    </div>
+    <ul>
+            <form action="/">
+             <button type="submit" class="btn-primary">Home</button>
+            </form>
+    </ul>
+</nav>
+
+<!-- SECTION 1: GRAPH -->
+<section class="section graph-section">
+    <h1>Market Overview</h1>
+    <div class="charts-grid">
+        
+        <div class="graph-container">
+            <h3>
+                <span>NIFTY 50{{info.current_price}}</span>
+                <span>{{info["currentPrice"]}}</span>
+            </h3>
+            <div class="iframe-wrapper">
+                <iframe src="{{ url_for('static', filename='data/' + info.symbol + '_graph.html') }}" title="Nifty 50 Graph" scrolling="no" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <div class="graph-container">
+            <h3>
+                <span>SENSEX{{info1.current_price}}</span>
+                <span>{{info1["currentPrice"]}}</span>
+            </h3>
+            <div class="iframe-wrapper">
+                <iframe src="{{ url_for('static', filename='data/' + info1.symbol + '_graph.html') }}" title="Sensex Graph" scrolling="no" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <div class="graph-container">
+            <h3>
+                <span>Gold BeES (ETF)</span>
+                <span>10gm - {{info2["currentPrice"]}}</span>
+            </h3>
+            <div class="iframe-wrapper">
+                <iframe src="{{ url_for('static', filename='data/' + info2.symbol + '_graph.html') }}" title="Gold Graph" scrolling="no" loading="lazy"></iframe>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- SECTION 2: TRENDING STOCKS -->
+<!--
+<section class="section stocks-section">
+    <h2>Trending Stocks</h2>
+
+    <div class="stock-list">
+        <div class="stock">
+            <span>RELIANCE</span>
+            <span class="green">+2.45%</span>
+        </div>
+        <div class="stock">
+            <span>TCS</span>
+            <span class="green">+1.88%</span>
+        </div>
+        <div class="stock">
+            <span>INFY</span>
+            <span class="red">-0.62%</span>
+        </div>
+        <div class="stock">
+            <span>HDFCBANK</span>
+            <span class="green">+1.12%</span>
+        </div>
+        <div class="stock">
+            <span>ITC</span>
+            <span class="green">+0.94%</span>
+        </div>
+    </div>
+</section>
+-->
+
+</body>
+</html>

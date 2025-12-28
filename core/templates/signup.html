@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup | StockVision</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles/signup.css">
+</head>
+<body>
+
+<!-- BACKGROUND VIDEO-->
+<video autoplay muted loop playsinline class="bg-video">
+    <source src="/static/vid/bg.mp4" type="video/mp4">
+</video>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="brand">
+        <img src="/static/images/web_images/stockvision.png" alt="StockVision Logo">
+        <span>StockVision</span>
+    </div>
+    <div>
+    <ul>
+        <li>
+            <form action="/">
+             <button type="submit" class="btn-primary">Home</button>
+            </form>
+        </li>
+    </ul>
+    </div>
+</nav>
+
+<!-- SIGNUP CENTER -->
+<div class="signup-center">
+    <div class="signup-card">
+        <div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+        </div>
+        
+        <!-- LOGIN / REGISTER TABS -->
+        <div class="auth-tabs">
+            <div class="tab-indicator"></div>
+            <button class="tab-btn active" onclick="showSignup()">Registration</button>
+            <button class="tab-btn" onclick="showLogin()">Login</button>
+        </div>
+
+        <!-- REGISTRATION FORM -->
+        <form id="signupForm" class="auth-form" method="POST" action="/signup">
+            <div class="row">
+               <input type="text" placeholder="First Name" name="fname" required>
+               <input type="text" placeholder="Last Name" name="lname" required>
+            </div>
+
+            <input type="date" name="bdate" required>
+            <input type="email" placeholder="Email Address" name="uemail" required>
+            <input type="password" placeholder="Create Password" name="pass" required>
+
+            <button type="submit" class="btn-primary full">
+                Create Account
+            </button>
+        </form>
+        
+        <!-- LOGIN FORM -->
+        <form id="loginForm" class="auth-form hidden" method="POST" action="/signup">
+            <input type="text" placeholder="Email" name = "iemail" required>
+            <input type="password" placeholder="Password" name="ipass" required>
+
+            <button type="submit" class="btn-primary full">
+                Login
+            </button>
+        </form>
+        
+        <p class="small-text">
+            By continuing, you agree to our Terms & Privacy Policy.
+        </p>
+
+    </div>
+</div>
+
+<!-- JS (SIMPLE & CLEAN) -->
+<script>
+function showLogin() {
+    document.getElementById("loginForm").classList.remove("hidden");
+    document.getElementById("signupForm").classList.add("hidden");
+    document.querySelector(".tab-indicator").style.left = "50%";
+}
+
+function showSignup() {
+    document.getElementById("signupForm").classList.remove("hidden");
+    document.getElementById("loginForm").classList.add("hidden");
+    document.querySelector(".tab-indicator").style.left = "0%";
+}
+</script>
+
+</body>
+</html>

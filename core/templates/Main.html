@@ -4,22 +4,24 @@
     <meta charset="UTF-8">
     <meta name="description" content="Stock Analyzer - Real-time stock market analysis">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock Analyzer 101</title>
+    <title>Company | StockVision</title>
     <link rel="stylesheet" href="static/styles/style_main.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="bg-image"></div>
 
     <nav class="navbar">
-        <div class="logo">Stock Analyzer 101</div>
-    </nav>
-
-    <div class="container">
-        
-        <header class="page-header">
-
+        <span id="companyName">
             <h2>{{ info["shortName"] or Company }}</h2>
-        </header>
+        </span>
+        <form action="/selection">
+             <ul>
+                <button type="submit" class="btn-primary">Back to selection</button>
+            </ul>
+        </form>
+    </nav>
+    
+    <div class="container">
         
         <div class="dashboard-grid">
             <div class="card">
